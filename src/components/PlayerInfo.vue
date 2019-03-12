@@ -2,7 +2,7 @@
     <div class="player-info">
         <p>{{artist}}</p>
         <hr/>
-        <p>Crazy in love</p>
+        <p>{{trackName}}</p>
     </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
             type: String,
             required: false
         },
-        track: {
+        trackName: {
             type: String,
             required: false
         }

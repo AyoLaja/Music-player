@@ -1,7 +1,7 @@
 <template>
     <div class="player-footer">
-        <PlayerControls />
-        <PlayerInfo :artist="artist"/>
+        <PlayerControls :trackSrc="trackSrc" />
+        <PlayerInfo :artist="artist" :trackName="trackName"/>
     </div>
 </template>
 
@@ -18,6 +18,14 @@
             artist: {
                 type: String,
                 requried: true
+            },
+            trackName: {
+                type: String, 
+                required: true
+            },
+            trackSrc: {
+                type: String,
+                required: true
             }
         }
     }

@@ -2,8 +2,8 @@
     <div class="music-player">
         <h4>Music Player</h4>
         <br/>
-        <PlayerImage coverImage="https://s3-us-west-1.amazonaws.com/fbx-fed-homework/Normcore_-_Neighbors/Normcore_-_01_-_The_Plane.jpg"/>
-        <PlayerFooter :artist="artist"/>
+        <PlayerImage :coverImage="currentTrack.cover_image"/>
+        <PlayerFooter :artist="artist" :trackName="currentTrack.name" :trackSrc="currentTrack.url"/>
     </div>
 </template>
 
@@ -14,18 +14,42 @@
     import PlayerFooter from './PlayerFooter.vue'
     import PlayerControls from './PlayerControls.vue'
     import PlayerInfo from './PlayerInfo.vue'
+    import { eventBus } from '../main'
     
     export default {
         data() {
             return {
                 album: playlist.album_name,
-                artist: playlist["artist"],
-                myPlaylist: playlist.tracks
+                artist: playlist.artist,
+                // myPlaylist: playlist.tracks,
+                currentTrack: playlist.tracks[0],
+                trackNumber: 0
             }
         },
         created() {
             // this.getPlaylist()
             console.log(this.artist)
+            eventBus.$on('prevTrack', () => {
+                if (this.trackNumber <= 0) {
+                    this.trackNumber = playlist.tracks.length - 1
+                    this.currentTrack = playlist.tracks[this.trackNumber]
+                }
+                else {
+                    this.trackNumber--
+                    this.currentTrack = playlist.tracks[this.trackNumber]
+                }
+            })
+
+            eventBus.$on('nextTrack', () => {
+                if (this.trackNumber >= playlist.tracks.length - 1) {
+                    this.trackNumber = 0
+                    this.currentTrack = playlist.tracks[this.trackNumber]
+                }
+                else {
+                    this.trackNumber++
+                    this.currentTrack = playlist.tracks[this.trackNumber]
+                }
+            })
         },
         methods: {
             getPlaylist() {
@@ -51,7 +75,6 @@
 
 <style scoped>
     .music-player {
-        height: 500px;
         width: 500px;
         margin: 0;
         position: absolute;
