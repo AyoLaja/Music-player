@@ -1,6 +1,8 @@
 <template>
     <div class="player-image">
-        <img :src="coverImage" alt="Cover image"/>
+        <transition name="fade" mode="out-in">
+            <img :src="coverImage" alt="Cover image"/>
+        </transition>
     </div>
 </template>
 
@@ -15,6 +17,7 @@
     }
 </script>
 
+<
 <style scoped>
     .player-image {
         height: inherit;
@@ -23,5 +26,13 @@
 
     img {
         width: inherit;
+    }
+
+    .fade-enter-active, .fade-leave-active {
+        transition: opacity 0.5s;
+    }
+
+    .fade-enter, .fade-leave-to {
+        opacity: 0;
     }
 </style>

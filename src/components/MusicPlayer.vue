@@ -21,14 +21,18 @@
             return {
                 album: playlist.album_name,
                 artist: playlist.artist,
-                // myPlaylist: playlist.tracks,
                 currentTrack: playlist.tracks[0],
                 trackNumber: 0
             }
         },
+        components: {
+            PlayerImage,
+            PlayerFooter,
+            PlayerImage,
+            PlayerInfo
+        },
         created() {
             // this.getPlaylist()
-            console.log(this.artist)
             eventBus.$on('prevTrack', () => {
                 if (this.trackNumber <= 0) {
                     this.trackNumber = playlist.tracks.length - 1
@@ -63,12 +67,6 @@
                 .then(response => console.log(response))
                 .catch(error => console.log(error))
             }
-        },
-        components: {
-            PlayerImage,
-            PlayerFooter,
-            PlayerImage,
-            PlayerInfo
         }
     }
 </script>

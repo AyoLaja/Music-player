@@ -37,6 +37,7 @@
         align-items: center;
         justify-content: center;
         background-color: #fff;
-        padding: 30px 10px;
+        padding: 30px 20px;
+        margin-top: -4px;
     }
 </style>

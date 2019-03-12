@@ -3,18 +3,10 @@
         <audio class="myAudio" :src="trackSrc">
             Your browser does not support the audio element.
         </audio>
-        <span class="prev-track" @click="prevTrack()">
-            <!-- <img src="../assets/Fundbox/Assets/back_idle.png" alt="Previous Track"/> -->
-        </span>
-        <span v-if="playing" class="pause-track" @click="pause()">
-            <!-- <img src="../assets/Fundbox/Assets/pause_idle.png" alt="Pause Track"/> -->
-        </span>
-        <span v-else class="play-track" @click="play()">
-             <!-- <img src="../assets/Fundbox/Assets/play_idle.png" alt="Play Track"/> -->
-        </span>
-        <span class="next-track" @click="nextTrack()">
-            <!-- <img src="../assets/Fundbox/Assets/forward_idle.png" alt="Next Track"/> -->
-        </span>
+        <span class="prev-track" @click="prevTrack()"></span>
+        <span v-if="playing" class="pause-track" @click="pause()"></span>
+        <span v-else class="play-track" @click="play()"></span>
+        <span class="next-track" @click="nextTrack()"></span>
     </div>
 </template>
 
@@ -68,6 +60,7 @@
 <style scoped>
     .player-controls {
         width: 30%;
+        text-align: left;
     }
 
     span {
@@ -114,5 +107,9 @@
 
     .next-track:hover {
         background: url('../assets/Fundbox/Assets/forward_hover.png')
+    }
+
+    .play-track, .pause-track, .next-track, .prev-track {
+        transition: all 0.3s ease;
     }
 </style>
