@@ -1,30 +1,25 @@
 <template>
     <div class="player-controls">
-        <audio class="myAudio" :src="trackSrc" controls>
-            <!-- <source type="audio/mp3"> -->
+        <audio class="myAudio" :src="trackSrc">
+            Your browser does not support the audio element.
         </audio>
-        <span @click="prevTrack()">
-            <img src="../assets/Fundbox/Assets/back_idle.png" alt="Previous Track"/>
+        <span class="prev-track" @click="prevTrack()">
+            <!-- <img src="../assets/Fundbox/Assets/back_idle.png" alt="Previous Track"/> -->
         </span>
-        <span v-if="playing" @click="pause()">
-           
-            <img src="../assets/Fundbox/Assets/pause_idle.png" alt="Pause Track"/>
+        <span v-if="playing" class="pause-track" @click="pause()">
+            <!-- <img src="../assets/Fundbox/Assets/pause_idle.png" alt="Pause Track"/> -->
         </span>
-        <span v-else @click="play()">
-             <img src="../assets/Fundbox/Assets/play_idle.png" alt="Play Track"/>
+        <span v-else class="play-track" @click="play()">
+             <!-- <img src="../assets/Fundbox/Assets/play_idle.png" alt="Play Track"/> -->
         </span>
-        <span @click="nextTrack()">
-            <img src="../assets/Fundbox/Assets/forward_idle.png" alt="Next Track"/>
+        <span class="next-track" @click="nextTrack()">
+            <!-- <img src="../assets/Fundbox/Assets/forward_idle.png" alt="Next Track"/> -->
         </span>
     </div>
 </template>
 
 <script>
     import { eventBus } from '../main'      
-
-    // const audio = document.querySelector('.myAudio')
-    // audio.addEventListener('play', )
-
     export default {
         data() {
             return {
@@ -76,7 +71,48 @@
     }
 
     span {
-        padding-right: 10px;
+        margin-right: 10px;
         cursor: pointer;
+        display: inline-block;
+        height: 20px;
+        width: 26px;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    .play-track, .pause-track {
+        width: 16px;
+    }
+
+    .play-track {
+        background: url('../assets/Fundbox/Assets/play_idle.png')
+    }
+
+    .play-track:hover {
+        background: url('../assets/Fundbox/Assets/play_hover.png')
+    }
+
+    .pause-track {
+        background: url('../assets/Fundbox/Assets/pause_idle.png')
+    }
+
+    .pause-track:hover {
+        background: url('../assets/Fundbox/Assets/pause_hover.png')
+    }
+
+    .prev-track {
+        background: url('../assets/Fundbox/Assets/back_idle.png')
+    }
+
+    .prev-track:hover {
+        background: url('../assets/Fundbox/Assets/back_hover.png')
+    }
+
+    .next-track {
+        background: url('../assets/Fundbox/Assets/forward_idle.png')
+    }
+
+    .next-track:hover {
+        background: url('../assets/Fundbox/Assets/forward_hover.png')
     }
 </style>
