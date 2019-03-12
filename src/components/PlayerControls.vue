@@ -1,13 +1,17 @@
 <template>
     <div class="player-controls">
-        <audio class="myAudio" :src="trackSrc">
+        <audio class="myAudio" :src="trackSrc" controls>
             <!-- <source type="audio/mp3"> -->
         </audio>
         <span @click="prevTrack()">
             <img src="../assets/Fundbox/Assets/back_idle.png" alt="Previous Track"/>
         </span>
-        <span @click="play()">
-            <img src="../assets/Fundbox/Assets/play_idle.png" alt="Play Track"/>
+        <span v-if="playing" @click="pause()">
+           
+            <img src="../assets/Fundbox/Assets/pause_idle.png" alt="Pause Track"/>
+        </span>
+        <span v-else @click="play()">
+             <img src="../assets/Fundbox/Assets/play_idle.png" alt="Play Track"/>
         </span>
         <span @click="nextTrack()">
             <img src="../assets/Fundbox/Assets/forward_idle.png" alt="Next Track"/>
@@ -18,38 +22,38 @@
 <script>
     import { eventBus } from '../main'      
 
-    const audio = document.querySelector('.myAudio')
+    // const audio = document.querySelector('.myAudio')
+    // audio.addEventListener('play', )
 
     export default {
-        // data() {
-        //     return {
-        //         track: trackSrc
-        //     }
-        // },
+        data() {
+            return {
+                audio: undefined,
+                playing: false
+            }
+        },
         methods: {
             play() {
-                console.log(audio)
-                // audio.play ? audio.pause() : audio.play()
-                if (audio.play) {
-                    this.pause()
-                    console.log('audio was playing, now pasued')
-                }
-                else {
-                    audio.play()
-                }
-                // audio.addEventListener('play', audio.play)
-                // audio.play()
+                this.audio.play()
+                this.playing = true
             },
             pause() {
-                audio.pause()
+                this.audio.pause()
+                this.playing = false
             },
             nextTrack() {
                 eventBus.$emit('nextTrack')
-                audio.play()
+                this.playing = false
+                setTimeout(() => {
+                    this.play()
+                }, 500);
             },
             prevTrack() {
                 eventBus.$emit('prevTrack')
-                audio.play()
+                this.playing = false
+                setTimeout(() => {
+                    this.play()
+                }, 500);
             }
         },
         props: {
@@ -57,6 +61,11 @@
                 type: String, 
                 required: true
             }
+        },
+        mounted() {
+            this.audio = this.$el.querySelector('.myAudio')
+            this.audio.addEventListener('play', this.play)
+            this.audio.addEventListener('pause', this.pause)
         }
     }
 </script>
