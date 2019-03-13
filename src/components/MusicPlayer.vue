@@ -78,4 +78,10 @@
         left: 50%;
         transform: translate(-50%, -50%);
     }
+
+    @media only screen and (max-width: 768px) {
+        .music-player {
+            width: 100%;
+        }
+    }
 </style>
