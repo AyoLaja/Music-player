@@ -1,7 +1,5 @@
 <template>
     <div class="music-player">
-        <h4>Music Player</h4>
-        <br/>
         <PlayerImage :coverImage="currentTrack.cover_image"/>
         <PlayerFooter :artist="artist" :trackName="currentTrack.name" :trackSrc="currentTrack.url"/>
     </div>

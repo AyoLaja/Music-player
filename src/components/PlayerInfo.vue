@@ -25,6 +25,7 @@ export default {
     .player-info {
         width: 70%;
         text-align: left;
+        padding-left: 20px;
     }
 
     hr {
