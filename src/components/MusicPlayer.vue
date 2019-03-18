@@ -53,6 +53,7 @@
             })
         },
         methods: {
+            //Ran into CORS error while trying to make the request to the resource 
             getPlaylist() {
                 const apiUrl = 'https://s3-us-west-1.amazonaws.com/fbx-fed-homework/fed_home_assignment_api.json'
 
