@@ -17,7 +17,6 @@
     export default {
         data() {
             return {
-                album: playlist.album_name,
                 artist: playlist.artist,
                 currentTrack: playlist.tracks[0],
                 trackNumber: 0
@@ -59,7 +58,8 @@
 
                 axios.get(apiUrl, {
                     headers: {
-                        "Access-Control-Allow-Origin": "*"
+                        "Access-Control-Allow-Origin": "http://localhost:8081",
+                        crossorigin: true
                     }
                 })
                 .then(response => console.log(response))
